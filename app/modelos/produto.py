@@ -2,7 +2,9 @@
 
 
 class Produto:
-    def __init__(self, nome: str, preco: float, disponivel: bool = True):
+    def __init__(self, nome: str, preco: float, disponivel: bool = True,
+                 id_produto: int = None):
+        self.id_produto = id_produto  # preenchido ao salvar no banco
         self.nome = nome
         self.__preco = 0.0      # atributo privado
         self.preco = preco      # passa pelo setter, que valida
@@ -28,6 +30,10 @@ class Produto:
         )
 
     # --- comportamento (as filhas podem sobrescrever) -----------------
+    @property
+    def categoria(self) -> str:
+        return "produto"
+
     def calcular_preco(self) -> float:
         return self.__preco
 

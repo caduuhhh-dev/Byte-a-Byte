@@ -4,10 +4,14 @@ from app.modelos.produto import Produto
 
 class Prato(Produto):
     def __init__(self, nome: str, preco: float, ingredientes: list, tempo_preparo: int,
-                 disponivel: bool = True):
-        super().__init__(nome, preco, disponivel)
+                 disponivel: bool = True, id_produto: int = None):
+        super().__init__(nome, preco, disponivel, id_produto)
         self.ingredientes = list(ingredientes)
         self.tempo_preparo = tempo_preparo  # em minutos
+
+    @property
+    def categoria(self) -> str:
+        return "prato"
 
     def calcular_preco(self) -> float:
         # Regra própria de preço pode entrar aqui (ex.: taxa de preparo).
